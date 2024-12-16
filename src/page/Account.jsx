@@ -4,7 +4,7 @@ import { setLocal } from "../config/localStorage";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { getPayments, postPayments } from "../client/server";
-import Diagramma from "../components/diagramma";
+import Diagramma from "../components/Diagramma";
 import { getExchange } from "../client/getExchange";
 export default function Account() {
     const { balance, setBalance } = useContext(BalanceContext);
