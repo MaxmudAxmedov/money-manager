@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
-import Tranzaksiya from "./components/tranzaksiya";
+import Transaction from "./components/Transaction.jsx";
 
 export default function Layout() {
     return (
@@ -13,7 +13,7 @@ export default function Layout() {
                 <Outlet />
             </div>
             <div className="container bg-info" style={{ width: "30%" }}>
-                <Tranzaksiya />
+                <Transaction />
             </div>
         </div>
     );
