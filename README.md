@@ -58,7 +58,7 @@ Quyidagi qadamlarni bajaring:
 
 ## 📖 Foydalanish bo‘yicha qo‘llanma
 Loyihadan qanday foydalanishni ko‘rsatish uchun video yoki skrinshotlarni joylashtiring:
-- **Xususiyat 1:** serverni ishga tushuring ( npm install chart.js react-chartjs-2 ).
+- **Xususiyat 1:** serverni ishga tushuring ( npx json-server db.json ).
 - **Xususiyat 2:** loyihani npm run dev yordamida yurgazing.
 
 
