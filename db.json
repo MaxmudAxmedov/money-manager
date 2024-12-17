@@ -67,7 +67,107 @@
       "title": "Hisobim"
     }
   ],
-  "transfers": [],
+  "transfers": [
+    {
+      "id": "5b66",
+      "category": "Ta'lim",
+      "title": "Milliy Universitet",
+      "sum": "223333",
+      "pnfl": "2334",
+      "time": "2024-12-17T12:04:31.026Z",
+      "status": false
+    },
+    {
+      "id": "1190",
+      "category": "Ta'lim",
+      "title": "Milliy Universitet",
+      "sum": "23443",
+      "pnfl": "122344",
+      "time": "2024-12-17T12:07:33.936Z",
+      "status": false
+    },
+    {
+      "id": "6387",
+      "category": "Komunal To'lovlar",
+      "title": "Elektir",
+      "sum": "233446",
+      "pnfl": "2234",
+      "time": "2024-12-17T12:08:06.634Z",
+      "status": false
+    },
+    {
+      "id": "f113",
+      "category": "Hisobim",
+      "title": "Hisobimga tushum",
+      "sum": 12000,
+      "pnfl": "e1509b66-5a88-4926-b03a-b6cf4a33e1d8",
+      "time": "2024-12-17T12:10:07.551Z",
+      "status": true
+    },
+    {
+      "id": "5898",
+      "category": "Hisobim",
+      "title": "Hisobimga tushum",
+      "sum": 12342,
+      "pnfl": "08266d9e-f747-497d-905d-25da6a2d68b6",
+      "time": "2024-12-17T12:14:05.742Z",
+      "status": true
+    },
+    {
+      "id": "23db",
+      "category": "Hisobim",
+      "title": "Hisobimga tushum",
+      "sum": 34,
+      "pnfl": "f6efb93d-4e5a-4047-949d-05a231c25f3f",
+      "time": "2024-12-17T12:29:14.244Z",
+      "status": true
+    },
+    {
+      "id": "168c",
+      "category": "Hisobim",
+      "title": "Hisobimga tushum",
+      "sum": 232,
+      "pnfl": "e8243be1-d97c-4424-984f-0f14efb141f0",
+      "time": "2024-12-17T12:41:00.459Z",
+      "status": true
+    },
+    {
+      "id": "5eba",
+      "category": "Ta'lim",
+      "title": "Milliy Universitet",
+      "sum": "1223",
+      "pnfl": "2y87347384",
+      "time": "2024-12-17T13:21:19.324Z",
+      "status": false
+    },
+    {
+      "id": "e150",
+      "category": "Hisobim",
+      "title": "Hisobimga tushum",
+      "sum": 12213432,
+      "pnfl": "bc7db578-fc28-4a8d-bcc8-74f2fb76368e",
+      "time": "2024-12-17T17:15:46.351Z",
+      "status": true
+    },
+    {
+      "id": "d561",
+      "category": "Hisobim",
+      "title": "Hisobimga tushum",
+      "sum": 3243453,
+      "pnfl": "270313e9-8a61-4ee0-a5dc-199997bda8fc",
+      "time": "2024-12-17T17:16:11.961Z",
+      "status": true
+    },
+    {
+      "id": "c0cb",
+      "category": "Ta'lim",
+      "title": "Milliy Universitet",
+      "sum": "12433",
+      "pnfl": "35354",
+      "time": "2024-12-17T17:21:14.283Z",
+      "status": false
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

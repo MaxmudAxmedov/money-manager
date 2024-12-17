@@ -6,6 +6,7 @@ import { moneyFormatter } from "../config/moneyFormatter";
 
 export default function Tranzaksiya() {
     const [data, setData] = useState([]);
+    const [allData, setAllData] = useState([]);
     const { balance } = useContext(BalanceContext);
     const [category, setCategory] = useState([]);
     const getData = async (val) => {
@@ -13,6 +14,7 @@ export default function Tranzaksiya() {
         try {
             const res = await getPayments("/transfers");
             setData(res?.data);
+            setAllData(res?.data);
             if (val == "undefined") {
                 const result = await getPayments("/transfers");
                 setData(result.data);
@@ -62,7 +64,7 @@ export default function Tranzaksiya() {
         }
     };
 
-    const result = data.reduce(
+    const result = allData.reduce(
         (acc, item) => {
             if (item.status) {
                 acc.kirim += parseInt(item.sum);
@@ -76,66 +78,81 @@ export default function Tranzaksiya() {
     );
 
     return (
-        <div>
-            <h3 className="my-3">O'tkazmalar tarixi</h3>
-            <div className="d-flex mb-3 justify-content-between">
-                <select
-                    className="p-2 rounded bg-success"
-                    onChange={handleChange}
-                >
-                    <option value="undefined">Barcha category</option>
-                    {category?.map((i, index) => {
-                        return (
-                            <option key={index} value={i.title}>
-                                {i?.title}
-                            </option>
-                        );
-                    })}
-                </select>
-                <select
-                    className="p-2 rounded bg-success"
-                    onChange={handleStatus}
-                >
-                    <option value="undefined">Kirim chiqim</option>
-                    <option value="true">Kirim</option>
-                    <option value="false">chiqim</option>
-                </select>
+        <>
+            <div className="bg-success p-2">
+                <h3 className="text-light text-center">O'tkazmalar tarixi</h3>
+
+                <div className="d-flex p-2 justify-content-between">
+                    <select
+                        className="p-2 rounded"
+                        onChange={handleChange}
+                    >
+                        <option value="undefined">Barcha category</option>
+                        {category?.map((i, index) => {
+                            return (
+                                <option key={index} value={i.title}>
+                                    {i?.title}
+                                </option>
+                            );
+                        })}
+                    </select>
+                    <select
+                        className="p-2 rounded"
+                        onChange={handleStatus}
+                    >
+                        <option value="undefined">Kirim chiqim</option>
+                        <option value="true">Kirim</option>
+                        <option value="false">chiqim</option>
+                    </select>
+                </div>
             </div>
+
             <ul
-                className="list-unstyled"
-                style={{ height: "60vh", overflowY: "scroll" }}
+                className="list-unstyled m-0 rounded"
+                style={{ height: "72.4vh", overflowY: "scroll" }}
             >
                 {data?.length ? (
-                    data?.map((i, index) => {
-                        return (
-                            <li className="border rounded p-3" key={index}>
-                                <strong className="me-2">{i.title}</strong>
-                                {i.status ? (
-                                    <span className="text-success">Kirim</span>
-                                ) : (
-                                    <span className="text-danger">Chiqim</span>
-                                )}
-                                <p>{moneyFormatter(i.sum, "UZS")}</p>
+                    data
+                        ?.slice()
+                        .reverse()
+                        .map((i, index) => {
+                            return (
+                                <li className="border rounded p-2" key={index}>
+                                    <strong className="me-2">{i.title}</strong>
+                                    {i.status ? (
+                                        <span className="text-success">
+                                            Kirim
+                                        </span>
+                                    ) : (
+                                        <span className="text-danger">
+                                            Chiqim
+                                        </span>
+                                    )}
+                                    <p>{moneyFormatter(i.sum, "UZS")}</p>
 
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <time>
-                                        {new Date(i.time).toLocaleString()}
-                                    </time>
-                                    <button
-                                        onClick={() => handleDelete(i.id)}
-                                        className="btn btn-danger"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </li>
-                        );
-                    })
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <time>
+                                            {new Date(i.time).toLocaleString()}
+                                        </time>
+                                        <button
+                                            onClick={() => handleDelete(i.id)}
+                                            className="btn btn-danger"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </li>
+                            );
+                        })
                 ) : (
                     <h4 className="border rounded p-3">Mavjud emas</h4>
                 )}
             </ul>
-            <div className="border rounded p-2" style={{ height: "20vh" }}>
+
+            <div
+                className="border p-2"
+                style={{ height: "15vh" }}
+            >
                 <p className="text-success">
                     <strong>Kirim: </strong>
                     {moneyFormatter(result.kirim, "UZS")}
@@ -151,6 +168,6 @@ export default function Tranzaksiya() {
                     {moneyFormatter(result.umumiy, "UZS")}
                 </p>
             </div>
-        </div>
+        </>
     );
 }

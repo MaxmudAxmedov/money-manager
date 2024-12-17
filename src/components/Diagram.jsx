@@ -10,7 +10,7 @@ import {
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
-export default function Diagramma({ data }) {
+export default function Diagram({ data }) {
     const totalsByCategory = data.reduce((acc, expense) => {
         if (!expense.status) {
             acc[expense.category] =
@@ -30,7 +30,6 @@ export default function Diagramma({ data }) {
             };
         }
     );
-    console.log(percentages);
     let numbers = percentages.map((i) => i.percentage, []);
     let labels = percentages.map((i) => i.category, []);
 

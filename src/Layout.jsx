@@ -6,13 +6,13 @@ import Transaction from "./components/Transaction.jsx";
 export default function Layout() {
     return (
         <div className="d-flex" style={{ width: "100vw" }}>
-            <div style={{ width: "20%" }}>
+            <div style={{ width: "10%" }}>
                 <Navbar />
             </div>
             <div className="container" style={{ width: "90%" }}>
                 <Outlet />
             </div>
-            <div className="container bg-info" style={{ width: "30%" }}>
+            <div className="border" style={{ width: "30%" }}>
                 <Transaction />
             </div>
         </div>

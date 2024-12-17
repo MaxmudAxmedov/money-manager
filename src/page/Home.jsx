@@ -7,6 +7,7 @@ import { CurrencySelector2 } from "../components/CurrencySelector2";
 import ExchangeIcon from "../assets/transaction.png";
 import Payment from "../components/Payment";
 import { moneyFormatter } from "../config/moneyFormatter.js";
+import { toast } from "react-toastify";
 
 export default function Home() {
     const [data, setData] = useState({});
@@ -25,16 +26,21 @@ export default function Home() {
     });
 
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await getExchange();
-            setLoading(false);
-            if (result.success) {
-                setLoading(true);
-                setData(result);
-            }
-        };
-
-        fetchData();
+        try {
+            const fetchData = async () => {
+                const result = await getExchange();
+                setLoading(false);
+                if (result.success) {
+                    setLoading(true);
+                    setData(result);
+                } else {
+                    toast.error(result.message);
+                }
+            };
+            fetchData();
+        } catch (error) {
+            toast.error(error);
+        }
     }, []);
     const handleValue = (e) => {
         const rawValue = e.target.value.replace(/\D/g, "");
@@ -46,7 +52,7 @@ export default function Home() {
         setCurrency(formatter);
         setValue(rawValue);
     };
-    if (!loading) return <h1>Loading</h1>;
+
     return (
         <>
             <div className="p-10">
@@ -78,7 +84,6 @@ export default function Home() {
                             <strong className="me-2">
                                 {moneyFormatter(value, select?.key)}
                             </strong>
-
                             <strong>
                                 {moneyFormatter(
                                     value * select2?.value,

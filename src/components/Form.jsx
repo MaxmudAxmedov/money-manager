@@ -4,17 +4,22 @@ import { BalanceContext } from "../context/BalanceContext";
 import { toast } from "react-toastify";
 import { postPayments } from "../client/server";
 import { setLocal } from "../config/localStorage";
+import { moneyFormatter } from "../config/moneyFormatter";
 export default function Form({ parent }) {
     const { balance, setBalance } = useContext(BalanceContext);
     const [value, setValue] = useState(0);
     const [pnfl, setPnfl] = useState("");
+    const [currency, setCurrency] = useState("");
     const time = new Date();
     const handleChange = (e) => {
-        if (!isNaN(e.target.value)) {
-            setValue(e.target.value);
-        } else {
-            toast.error("Faqat raqam kiriting");
+        const rawValue = e.target.value.replace(/\D/g, "");
+        if (!rawValue) {
+            setCurrency("");
+            return;
         }
+        const formatter = moneyFormatter(rawValue, "UZS");
+        setCurrency(formatter);
+        setValue(rawValue);
     };
     const handlePost = async (e) => {
         e.preventDefault();
@@ -46,6 +51,7 @@ export default function Form({ parent }) {
 
             <Input
                 onChange={handleChange}
+                value={currency}
                 style={"input-group w-100 mb-2"}
                 placeholder={"summani kiriting"}
             />
@@ -55,10 +61,7 @@ export default function Form({ parent }) {
                 </span>
             ) : (
                 <span className="text-success ps-2">
-                    {/* <MoneyFormatter
-                        amount={balance - value < 0 ? "" : balance - value}
-                        currency={"UZS"}
-                    /> */}
+                    {moneyFormatter(balance - value < 0 ? "" : balance - value, "UZS")}
                 </span>
             )}
 
