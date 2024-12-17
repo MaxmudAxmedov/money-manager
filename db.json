@@ -69,51 +69,6 @@
   ],
   "transfers": [
     {
-      "id": "5289",
-      "category": "Hisobim",
-      "title": "Hisobimga tushum",
-      "sum": 1500000,
-      "pnfl": "a9320394-bd7c-4c65-8f4c-45c40f74953d",
-      "time": "2024-12-16T18:48:46.115Z",
-      "status": true
-    },
-    {
-      "id": "2ffc",
-      "category": "Ta'lim",
-      "title": "Milliy Universitet",
-      "sum": "75000",
-      "pnfl": "9274374",
-      "time": "2024-12-16T18:49:15.745Z",
-      "status": false
-    },
-    {
-      "id": "560f",
-      "category": "Komulan To'lovlar",
-      "title": "Elektir",
-      "sum": "50000",
-      "pnfl": "3242342",
-      "time": "2024-12-16T18:49:27.178Z",
-      "status": false
-    },
-    {
-      "id": "542f",
-      "category": "Mobile operators",
-      "title": "Beeline",
-      "sum": "77000",
-      "pnfl": "328756",
-      "time": "2024-12-16T18:49:48.281Z",
-      "status": false
-    },
-    {
-      "id": "6a84",
-      "category": "Hisobim",
-      "title": "Hisobimga tushum",
-      "sum": 13232423435,
-      "pnfl": "8db9b175-83ea-40fd-b3a4-a54b86953145",
-      "time": "2024-12-16T18:57:09.932Z",
-      "status": true
-    },
-    {
       "id": "e446",
       "category": "Hisobim",
       "title": "Hisobimga tushum",
@@ -123,13 +78,13 @@
       "status": true
     },
     {
-      "id": "c902",
-      "category": "Hisobim",
-      "title": "Hisobimga tushum",
-      "sum": 343534534,
-      "pnfl": "a818980e-85c9-4da3-a8f3-a4e2e04eeeb4",
-      "time": "2024-12-16T18:57:29.226Z",
-      "status": true
+      "id": "3cde",
+      "category": "Komunal To'lovlar",
+      "title": "Gaz",
+      "sum": "343434",
+      "pnfl": "434",
+      "time": "2024-12-16T20:23:53.290Z",
+      "status": false
     }
   ],
   "profile": {

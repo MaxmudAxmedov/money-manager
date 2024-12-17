@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { getPayments, postPayments } from "../client/server";
 import Diagramma from "../components/Diagramma";
 import { getExchange } from "../client/getExchange";
+import { MoneyFormatter } from "../components/MoneyFormatter";
 export default function Account() {
     const { balance, setBalance } = useContext(BalanceContext);
     const [transfers, setTransfers] = useState([]);
@@ -53,9 +54,20 @@ export default function Account() {
         <div className=" p-3">
             <div className="d-flex">
                 <div className="bg-success me-3 rounded p-2">
-                    <strong className="text-light">{balance} SUM </strong>
-                    
-                    <strong className="text-light">{parseInt(data?.conversion_rates?.USD * balance)} USD</strong>
+                    <div>
+                        <MoneyFormatter
+                            amount={balance}
+                            currency={"UZS"}
+                        />
+                    </div>
+                    <div>
+                        <MoneyFormatter
+                            amount={
+                                data?.conversion_rates?.USD * balance
+                            }
+                            currency={"USD"}
+                        />
+                    </div>
                 </div>
                 <button className="btn btn-primary" onClick={handleClick}>
                     Balansni to'ldirish

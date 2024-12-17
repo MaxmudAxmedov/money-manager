@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { deletePayments, getPayments } from "../client/server";
 import { toast } from "react-toastify";
 import { BalanceContext } from "../context/BalanceContext";
+import { MoneyFormatter } from "./MoneyFormatter";
 
 export default function Tranzaksiya() {
     const [data, setData] = useState([]);
@@ -108,14 +109,18 @@ export default function Tranzaksiya() {
                     data?.map((i, index) => {
                         return (
                             <li className="border rounded p-3" key={index}>
-                                {}
                                 <strong className="me-2">{i.title}</strong>
                                 {i.status ? (
                                     <span className="text-success">Kirim</span>
                                 ) : (
                                     <span className="text-danger">Chiqim</span>
                                 )}
-                                <p>Sum: {i.sum}</p>
+                                <p>
+                                    <MoneyFormatter
+                                        amount={i.sum}
+                                        currency={"UZS"}
+                                    />
+                                </p>
                                 <div className="d-flex justify-content-between align-items-center">
                                     <time>
                                         {new Date(i.time).toLocaleString()}
@@ -135,11 +140,20 @@ export default function Tranzaksiya() {
                 )}
             </ul>
             <div className="border rounded p-2" style={{ height: "20vh" }}>
-                <strong className="text-success">Kirim: {result.kirim}</strong>
-                <br />
-                <strong className="text-danger">Chiqim: {result.chiqim}</strong>
-                <br />
-                <strong>Umumiy: {result.umumiy}</strong>
+                <p className="text-success">
+                    <strong>Kirim: </strong>
+                    <MoneyFormatter amount={result.kirim} currency={"UZS"} />
+                </p>
+
+                <p className="text-danger">
+                    <strong>Chiqim: </strong>
+                    <MoneyFormatter amount={result.chiqim} currency={"UZS"} />
+                </p>
+
+                <p>
+                    <strong>Umumiy: </strong>
+                    <MoneyFormatter amount={result.umumiy} currency={"UZS"} />
+                </p>
             </div>
         </div>
     );
