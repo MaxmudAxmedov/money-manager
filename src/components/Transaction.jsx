@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { deletePayments, getPayments } from "../client/server";
 import { toast } from "react-toastify";
 import { BalanceContext } from "../context/BalanceContext";
-import { MoneyFormatter } from "./MoneyFormatter";
+import { moneyFormatter } from "../config/moneyFormatter";
 
 export default function Tranzaksiya() {
     const [data, setData] = useState([]);
@@ -115,12 +115,8 @@ export default function Tranzaksiya() {
                                 ) : (
                                     <span className="text-danger">Chiqim</span>
                                 )}
-                                <p>
-                                    <MoneyFormatter
-                                        amount={i.sum}
-                                        currency={"UZS"}
-                                    />
-                                </p>
+                                <p>{moneyFormatter(i.sum, "UZS")}</p>
+
                                 <div className="d-flex justify-content-between align-items-center">
                                     <time>
                                         {new Date(i.time).toLocaleString()}
@@ -142,17 +138,17 @@ export default function Tranzaksiya() {
             <div className="border rounded p-2" style={{ height: "20vh" }}>
                 <p className="text-success">
                     <strong>Kirim: </strong>
-                    <MoneyFormatter amount={result.kirim} currency={"UZS"} />
+                    {moneyFormatter(result.kirim, "UZS")}
                 </p>
 
                 <p className="text-danger">
                     <strong>Chiqim: </strong>
-                    <MoneyFormatter amount={result.chiqim} currency={"UZS"} />
+                    {moneyFormatter(result.chiqim, "UZS")}
                 </p>
 
                 <p>
                     <strong>Umumiy: </strong>
-                    <MoneyFormatter amount={result.umumiy} currency={"UZS"} />
+                    {moneyFormatter(result.umumiy, "UZS")}
                 </p>
             </div>
         </div>

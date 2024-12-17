@@ -26,7 +26,7 @@ export default function Form({ parent }) {
                 sum: value,
                 pnfl,
                 time,
-                status: false
+                status: false,
             });
             setBalance(balance - value);
             setLocal("balance", balance - value);
@@ -54,8 +54,11 @@ export default function Form({ parent }) {
                     {balance - value} Hisobingizga mablag' yetarli emas !{" "}
                 </span>
             ) : (
-                <span className="text-success">
-                    Balance {balance - value < 0 ? "" : balance - value} sum
+                <span className="text-success ps-2">
+                    {/* <MoneyFormatter
+                        amount={balance - value < 0 ? "" : balance - value}
+                        currency={"UZS"}
+                    /> */}
                 </span>
             )}
 

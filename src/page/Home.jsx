@@ -6,13 +6,14 @@ import { CurrencySelector } from "../components/CurrencySelector";
 import { CurrencySelector2 } from "../components/CurrencySelector2";
 import ExchangeIcon from "../assets/transaction.png";
 import Payment from "../components/Payment";
+import { moneyFormatter } from "../config/moneyFormatter.js";
 
 export default function Home() {
     const [data, setData] = useState({});
     const [data2, setData2] = useState({});
     const [loading, setLoading] = useState(true);
+    const [currency, setCurrency] = useState("");
     const [value, setValue] = useState(0);
-
     const [select, setSelect] = useState({
         key: "Valyutani tanlang",
         value: 0,
@@ -35,22 +36,24 @@ export default function Home() {
 
         fetchData();
     }, []);
-
     const handleValue = (e) => {
-        if (!isNaN(e.target.value)) {
-            setValue(e.target.value);
-        } else {
-            alert("Faqat sonlarda kiriting");
+        const rawValue = e.target.value.replace(/\D/g, "");
+        if (!rawValue) {
+            setCurrency("");
+            return;
         }
+        const formatter = moneyFormatter(rawValue, "UZS");
+        setCurrency(formatter);
+        setValue(rawValue);
     };
     if (!loading) return <h1>Loading</h1>;
-    console.log(data);
     return (
         <>
             <div className="p-10">
                 <h3 className="text-2xl mb-4">Valyuta Konvertori</h3>
                 <div className="d-flex align-items-center">
                     <Input
+                        value={currency}
                         onChange={handleValue}
                         placeholder={"Summani kiriting"}
                     />
@@ -69,13 +72,23 @@ export default function Home() {
                     />
                 </div>
 
-                <div className="mt-4">
-                    {value != "" && select?.value && select2.value && (
-                        <p>{`From ${value} ${select?.key} To ${
-                            value * select2?.value
-                        } ${select2?.key}`}</p>
-                    )}
-                </div>
+                {value != "" && select?.value && select2.value && (
+                    <div className="mt-2 bg-secondary p-2 text-light rounded d-inline-block">
+                        <>
+                            <strong className="me-2">
+                                {moneyFormatter(value, select?.key)}
+                            </strong>
+
+                            <strong>
+                                {moneyFormatter(
+                                    value * select2?.value,
+                                    select2.key
+                                )}
+                            </strong>
+                        </>
+                        ƒ
+                    </div>
+                )}
                 <div>
                     <h3>Pul o'tkazmalari</h3>
                     <Payment />

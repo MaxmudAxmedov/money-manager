@@ -67,26 +67,7 @@
       "title": "Hisobim"
     }
   ],
-  "transfers": [
-    {
-      "id": "e446",
-      "category": "Hisobim",
-      "title": "Hisobimga tushum",
-      "sum": 32435,
-      "pnfl": "9abf7715-6abb-483e-ab22-e5751d2400a7",
-      "time": "2024-12-16T18:57:24.083Z",
-      "status": true
-    },
-    {
-      "id": "3cde",
-      "category": "Komunal To'lovlar",
-      "title": "Gaz",
-      "sum": "343434",
-      "pnfl": "434",
-      "time": "2024-12-16T20:23:53.290Z",
-      "status": false
-    }
-  ],
+  "transfers": [],
   "profile": {
     "name": "typicode"
   }

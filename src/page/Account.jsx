@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { getPayments, postPayments } from "../client/server";
 import Diagramma from "../components/Diagramma";
 import { getExchange } from "../client/getExchange";
-import { MoneyFormatter } from "../components/MoneyFormatter";
+import { moneyFormatter } from "../config/moneyFormatter";
 export default function Account() {
     const { balance, setBalance } = useContext(BalanceContext);
     const [transfers, setTransfers] = useState([]);
@@ -29,23 +29,24 @@ export default function Account() {
 
         fetchData();
     }, []);
-
     const handleClick = async () => {
         const prom = +prompt("Balansni to'ldirish");
         let money = balance + prom;
         try {
-            let res = await postPayments("/transfers", {
-                category: "Hisobim",
-                title: "Hisobimga tushum",
-                sum: prom,
-                pnfl: uuidv4(),
-                time,
-                status: true,
-            });
-            setBalance(money);
-            setLocal("balance", money);
-            console.log(res);
-            toast.success("Qo'shildi");
+            if (prom != "") {
+                let res = await postPayments("/transfers", {
+                    category: "Hisobim",
+                    title: "Hisobimga tushum",
+                    sum: prom,
+                    pnfl: uuidv4(),
+                    time,
+                    status: true,
+                });
+                setBalance(money);
+                setLocal("balance", money);
+                console.log(res);
+                toast.success("Qo'shildi");
+            }
         } catch (error) {
             toast.error("Xato");
         }
@@ -53,20 +54,13 @@ export default function Account() {
     return (
         <div className=" p-3">
             <div className="d-flex">
-                <div className="bg-success me-3 rounded p-2">
+                <div className="bg-success text-light me-3 rounded p-2">
+                    <div>{moneyFormatter(balance, "UZS")}</div>
                     <div>
-                        <MoneyFormatter
-                            amount={balance}
-                            currency={"UZS"}
-                        />
-                    </div>
-                    <div>
-                        <MoneyFormatter
-                            amount={
-                                data?.conversion_rates?.USD * balance
-                            }
-                            currency={"USD"}
-                        />
+                        {moneyFormatter(
+                            data?.conversion_rates?.USD * balance,
+                            "USD"
+                        )}
                     </div>
                 </div>
                 <button className="btn btn-primary" onClick={handleClick}>
